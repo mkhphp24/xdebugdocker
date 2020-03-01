@@ -1,5 +1,7 @@
 
 docker-compose down && docker-compose up -d
+docker-compose exec php composer install 
+
 docker rm -f $(docker ps -a -q)
 
 phpmyadmin URL : http://localhost:8080/index.php;
