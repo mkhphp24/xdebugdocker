@@ -4,29 +4,19 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Customer;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+
 class HomeController extends AbstractController
 {
 
 
     /**
-     * @Route("/home", name="home")
+     * @Route("/", name="home")
      */
-    public function index()
+    public function index(AuthenticationUtils $authUtils )
     {
-
-        $customer = $this->getDoctrine()
-            ->getRepository(Customer::class)
-            ->findByIdField(1);
-
-
-        if (!$customer) {
-            throw $this->createNotFoundException(
-                'error get data '
-            );
-        }
-    var_dump($customer);
-
+        $error = $authUtils->getLastAuthenticationError();
+        
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
         ]);
