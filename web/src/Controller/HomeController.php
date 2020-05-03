@@ -16,7 +16,7 @@ class HomeController extends AbstractController
     public function index(AuthenticationUtils $authUtils )
     {
         $error = $authUtils->getLastAuthenticationError();
-        
+//phpinfo();
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
         ]);
